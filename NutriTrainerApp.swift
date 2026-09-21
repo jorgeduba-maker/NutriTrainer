@@ -1,10 +1,6 @@
 import SwiftUI
-
 @main
 struct NutriTrainerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+    @StateObject var vm = NutritionViewModel()
+    var body: some Scene { WindowGroup{ ContentView().environmentObject(vm) } }
 }
