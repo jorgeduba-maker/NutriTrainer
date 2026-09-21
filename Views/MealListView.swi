@@ -1,0 +1,13 @@
+import SwiftUI
+struct MealListView: View {
+    @EnvironmentObject var vm: NutritionViewModel
+    @State var showAdd = false
+    var body: some View {
+        NavigationView{
+            List(vm.meals){ m in VStack(alignment:.leading){Text(m.name).bold(); Text("\(Int(m.calories)) kcal").font(.caption)} }
+           .navigationTitle("Hoy")
+           .toolbar{ Button{showAdd=true} label:{Image(systemName:"plus")} }
+           .sheet(isPresented:$showAdd){ AddMealView() }
+        }
+    }
+}
