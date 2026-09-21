@@ -1,0 +1,17 @@
+import SwiftUI
+struct AddMealView: View {
+    @EnvironmentObject var vm: NutritionViewModel
+    @Environment(\.dismiss) var dismiss
+    @State var name=""; @State var kcal=""; @State var protein=""
+    var body: some View {
+        NavigationView{
+            Form{
+                TextField("Ej: Pollo + arroz", text:$name)
+                TextField("Calorías", text:$kcal).keyboardType(.numberPad)
+                TextField("Proteína", text:$protein).keyboardType(.numberPad)
+            }
+           .navigationTitle("Añadir")
+           .toolbar{ ToolbarItem(placement:.confirmationAction){ Button("Guardar"){ let e = FoodEntry(name:name, calories:Double(kcal)??0, protein:Double(protein)??0, carbs:0, fat:0); vm.addMeal(e); dismiss() } } }
+        }
+    }
+}
