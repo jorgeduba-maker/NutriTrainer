@@ -1,0 +1,10 @@
+import Foundation
+struct FoodEntry: Identifiable, Codable {
+    var id = UUID()
+    var name: String
+    var calories: Double
+    var protein: Double
+    var carbs: Double
+    var fat: Double
+    var date: Date = Date()
+}
